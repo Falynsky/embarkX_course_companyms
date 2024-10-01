@@ -16,13 +16,20 @@ public class CompanyController {
 
     CompanyService companyService;
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<Company>> getAllCompanies() {
         List<Company> companies = companyService.findAll();
         return ResponseEntity.ok(companies);
     }
 
-    @PostMapping()
+    @GetMapping("/{id}")
+    public ResponseEntity<Company> getAllCompanies(@PathVariable Long id) {
+        Company company = companyService.findById(id);
+        return ResponseEntity.ok(company);
+    }
+
+
+    @PostMapping
     public ResponseEntity<Void> createCompany(@RequestBody Company company) {
         companyService.createCompany(company);
         return ResponseEntity.status(HttpStatus.CREATED).build();

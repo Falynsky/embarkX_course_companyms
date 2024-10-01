@@ -15,6 +15,19 @@ import java.util.Optional;
 public class CompanyServiceImp implements CompanyService {
 
     private final CompanyRepository companyRepository;
+
+
+    @Override
+    public Company findById(Long id) {
+        Optional<Company> copmpany = companyRepository.findById(id);
+
+        if (copmpany.isEmpty()) {
+            throw new NoSuchElementException("Company not found");
+        }
+
+        return copmpany.get();
+    }
+
     @Override
     public List<Company> findAll() {
         return companyRepository.findAll();
