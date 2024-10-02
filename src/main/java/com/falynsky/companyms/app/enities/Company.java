@@ -18,8 +18,8 @@ import java.util.Objects;
 @Table(name = "company")
 public class Company {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_gen")
-    @SequenceGenerator(name = "company_gen", sequenceName = "company_gen", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_seq")
+    @SequenceGenerator(name = "company_seq", sequenceName = "company_seq", allocationSize = 1)
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
