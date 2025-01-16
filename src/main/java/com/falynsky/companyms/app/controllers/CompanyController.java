@@ -1,4 +1,4 @@
-package com.falynsky.companyms.app.controllers;
+ package com.falynsky.companyms.app.controllers;
 
 import com.falynsky.companyms.app.enities.Company;
 import com.falynsky.companyms.app.services.CompanyService;
