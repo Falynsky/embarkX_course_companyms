@@ -1,5 +1,7 @@
 package com.falynsky.companyms.app.services.impl;
 
+import com.falynsky.companyms.app.clients.ReviewClient;
+import com.falynsky.companyms.app.dto.ReviewMessage;
 import com.falynsky.companyms.app.enities.Company;
 import com.falynsky.companyms.app.repositories.CompanyRepository;
 import com.falynsky.companyms.app.services.CompanyService;
@@ -14,17 +16,18 @@ import java.util.Optional;
 @Service
 public class CompanyServiceImp implements CompanyService {
 
+    private final ReviewClient reviewClient;
     private final CompanyRepository companyRepository;
     
     @Override
     public Company findById(Long id) {
-        Optional<Company> copmpany = companyRepository.findById(id);
+        Optional<Company> company = companyRepository.findById(id);
 
-        if (copmpany.isEmpty()) {
+        if (company.isEmpty()) {
             throw new NoSuchElementException("Company not found");
         }
 
-        return copmpany.get();
+        return company.get();
     }
 
     @Override
@@ -52,5 +55,16 @@ public class CompanyServiceImp implements CompanyService {
         updatedCompany.setName(company.getName() == null ? updatedCompany.getName() : company.getName());
         updatedCompany.setCity(company.getCity() == null ? updatedCompany.getCity() : company.getCity());
         companyRepository.save(updatedCompany);
+    }
+
+    @Override
+    public void updateCompanyRating(ReviewMessage reviewMessage) {
+        System.out.println(reviewMessage.getDescription());
+        Long companyId = reviewMessage.getCompanyId();
+        Company company = companyRepository.findById(companyId)
+                .orElseThrow(() -> new NoSuchElementException("Company not found " + companyId));
+        double avarageRating = reviewClient.getAvarageRatingForCompany(companyId);
+        company.setRating(avarageRating);
+        companyRepository.save(company);
     }
 }

@@ -9,5 +9,7 @@ CREATE TABLE company
     id      BIGINT PRIMARY KEY UNIQUE DEFAULT nextval('company_seq'),
     name    VARCHAR(255) NOT NULL UNIQUE,
     city    VARCHAR(255) NOT NULL,
+    rating DOUBLE PRECISION NOT NULL,
     version BIGINT       NOT NULL
 );
+

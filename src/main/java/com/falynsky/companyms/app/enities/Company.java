@@ -29,6 +29,9 @@ public class Company {
     @Column(name = "city", nullable = false)
     private String city;
 
+    @Column(name = "rating", nullable = false)
+    private Double rating;
+
     @JsonIgnore
     @Version
     @Column(name = "version", nullable = false)

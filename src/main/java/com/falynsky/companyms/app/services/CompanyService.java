@@ -1,6 +1,7 @@
 package com.falynsky.companyms.app.services;
 
 
+import com.falynsky.companyms.app.dto.ReviewMessage;
 import com.falynsky.companyms.app.enities.Company;
 
 import java.util.List;
@@ -17,4 +18,5 @@ public interface CompanyService {
 
     void updateCompany(Company company, Long id);
 
+    void updateCompanyRating(ReviewMessage reviewMessage);
 }
